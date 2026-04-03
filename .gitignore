@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+.env
+
+# OS
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+.cache/
+
+# Research outputs (generated dynamically)
+research/*/*.json
+research/*/*.csv
+research/*/tmp/
+
+# Local editor config
+.vscode/
+.idea/
+
+# Dependencies
+node_modules/
+
+# Sensitive data
+*.key
+*.pem
+.credentials
+
