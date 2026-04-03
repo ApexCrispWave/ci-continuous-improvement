@@ -143,3 +143,35 @@
 ✅ **All models on local inference**  
 ✅ **Ready for production**
 
+---
+
+## 2026-04-02 Update — GitHub Audit & Model Escalation
+
+### New Cron: CI: GitHub Repository Audit
+- **Cron ID:** `456470b3-284a-46d2-8086-6ce637361557`
+- **Schedule:** Monday 6:10 AM PT (`10 6 * * 1`)
+- **Model:** `ollama/qwen3:8b` (scan) → `anthropic/claude-opus-4-1` (strategic escalation)
+- **Script:** `scripts/github-audit.sh`
+- **Output:** `research/github-audit/YYYY-WNN.md`
+- **Research DB Type:** `ci-github`
+- **Escalation Script:** `scripts/ci-escalate-to-opus.sh`
+
+### New Files
+- `scripts/github-audit.sh` — Full audit script with qwen3:8b scan + Opus escalation
+- `scripts/ci-escalate-to-opus.sh` — Reusable escalation helper for any CI cron
+- `CI-MODEL-STRATEGY.md` — Model assignment matrix and escalation rules
+- `research/github-audit/2026-W14.md` — Initial audit output (tested end-to-end)
+
+### New Features
+- `research-db/ingest.py` updated: `github-audit/` folder maps to `ci-github` source type
+- `scripts/ci-research-query.sh` updated: `--type github` now works
+- `CI-AUTONOMOUS-LOOP.md` updated: GitHub audit step + Model Escalation Strategy section
+
+### Test Results
+- ✅ `gh repo list` fetched 21 ApexCrispWave repos
+- ✅ qwen3:8b scan identified 20/21 repos lack CI/CD workflows
+- ✅ Opus escalation tested — returned P1/P2/P3 action plan
+- ✅ Audit output ingested to research DB as `ci-github`
+- ✅ Query `ci-research-query.sh --type github --recent 7` returns results
+- ✅ Cron created in OpenClaw scheduler (next run: Mon Apr 13, 6:10 AM PT)
+
